@@ -18,7 +18,7 @@ import { Column } from "./column.js";
         } else {
             this.currentPlayer = 1
         }
-        console.log(this.columns[0])
+
     }
     getTokenAt(rowIndex, columnIndex) {
         return this.columns[columnIndex].getTokenAt(rowIndex);

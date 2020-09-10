@@ -7,7 +7,8 @@ export class Column {
         for (let i = 5; i >= 0; i--) {
             let rowSearch = this.tokens[i];
             if (rowSearch === null) {
-                rowSearch = currentPlayer;
+               this.tokens[i] = currentPlayer;
+               return;
             }
         }
 

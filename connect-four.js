@@ -17,6 +17,26 @@ function updateUI() {
             clickTargets.classList.add("red")
         }
     }
+    for (let i = 0; i <= 5; i++){
+        for(let j = 0; j <= 6; j++){
+            let square = document.getElementById(`square-${i}-${j}`);
+            let slot = game.getTokenAt(i, j)
+            if (slot === 1) {
+                if (!square.hasChildNodes()){
+                    let div = document.createElement('div');
+                    div.classList.add('black', 'token')
+                    square.appendChild(div);
+                }
+            } else if (slot === 2) {
+                if (!square.hasChildNodes()){
+                    let div = document.createElement('div');
+                    div.classList.add('red', 'token')
+                    square.appendChild(div);
+                }
+            }
+
+        }
+    }
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -27,7 +47,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     clickTargets.addEventListener('click', (e)=>{
         let colNum = e.target.id.slice(7)
-        console.log(colNum)
+
         game.playInColumn(colNum);
         updateUI();
     })
@@ -44,6 +64,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         p2Name.value = '';
         newGame.setAttribute('disabled', 'true');
         updateUI();
-        console.log(game)
+
     })
 });
