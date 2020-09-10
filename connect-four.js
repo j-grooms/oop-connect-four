@@ -25,8 +25,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const p2Name = document.getElementById('player-2-name');
     const newGame = document.getElementById('new-game');
 
-    clickTargets.addEventListener('click', ()=>{
-        game.playInColumn();
+    clickTargets.addEventListener('click', (e)=>{
+        let colNum = e.target.id.slice(7)
+        console.log(colNum)
+        game.playInColumn(colNum);
         updateUI();
     })
 
