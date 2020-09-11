@@ -55,8 +55,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     clickTargets.addEventListener('click', (e)=>{
         if (game.isColumnFull(parseInt(e.target.id.slice(7)))) {
-            // e.preventDefault();
-            console.log('test')
+            return;
+        }
+        if (game.winnerNumber !== 0){
             return;
         }
         let colNum = e.target.id.slice(7)
