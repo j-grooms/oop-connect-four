@@ -1,6 +1,7 @@
 import { ColumnWinInspector } from "./column-win-inspector.js"
 import { Column } from "./column.js";
 import { RowWinInspector } from './row-win-inspector.js'
+import { DiagonalWinInspector } from './diagonal-win-inspector.js'
 
 
  export class Game {
@@ -36,6 +37,7 @@ import { RowWinInspector } from './row-win-inspector.js'
         this.checkForTie();
         this.checkForColumnWin();
         this.checkForRowWin();
+        this.checkForDiagonalWin();
     }
     getTokenAt(rowIndex, columnIndex) {
         return this.columns[columnIndex].getTokenAt(rowIndex);
@@ -86,6 +88,31 @@ import { RowWinInspector } from './row-win-inspector.js'
         }
         if (rowInspect4.inspect()) {
             this.winnerNumber = rowInspect4.inspect();
+        }
+    }
+    checkForDiagonalWin() {
+        if (this.winnerNumber !== 0){
+            return
+        }
+        let group1 = this.columns.slice(0, 4);
+        let group2 = this.columns.slice(1, 5);
+        let group3 = this.columns.slice(2, 6);
+        let group4 = this.columns.slice(3, 7);
+        let diagInspect1 = new DiagonalWinInspector(group1)
+        let diagInspect2 = new DiagonalWinInspector(group2)
+        let diagInspect3 = new DiagonalWinInspector(group3)
+        let diagInspect4 = new DiagonalWinInspector(group4)
+        if (diagInspect1.inspect()) {
+            this.winnerNumber = diagInspect1.inspect();
+        }
+        if (diagInspect2.inspect()) {
+            this.winnerNumber = diagInspect2.inspect();
+        }
+        if (diagInspect3.inspect()) {
+            this.winnerNumber = diagInspect3.inspect();
+        }
+        if (diagInspect4.inspect()) {
+            this.winnerNumber = diagInspect4.inspect();
         }
     }
 }
