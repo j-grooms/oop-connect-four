@@ -1,5 +1,6 @@
 import { ColumnWinInspector } from "./column-win-inspector.js"
 import { Column } from "./column.js";
+import { RowWinInspector } from './row-win-inspector.js'
 
 
  export class Game {
@@ -34,6 +35,7 @@ import { Column } from "./column.js";
         }
         this.checkForTie();
         this.checkForColumnWin();
+        this.checkForRowWin();
     }
     getTokenAt(rowIndex, columnIndex) {
         return this.columns[columnIndex].getTokenAt(rowIndex);
@@ -60,8 +62,30 @@ import { Column } from "./column.js";
               console.log(this.winnerNumber)
           }
         })
-        // for (let i = 0 ; i <= 7 ; i++){
-
-        // }
+    }
+    checkForRowWin() {
+        if (this.winnerNumber !== 0){
+            return
+        }
+        let group1 = this.columns.slice(0, 4);
+        let group2 = this.columns.slice(1, 5);
+        let group3 = this.columns.slice(2, 6);
+        let group4 = this.columns.slice(3, 7);
+        let rowInspect1 = new RowWinInspector(group1)
+        let rowInspect2 = new RowWinInspector(group2)
+        let rowInspect3 = new RowWinInspector(group3)
+        let rowInspect4 = new RowWinInspector(group4)
+        if (rowInspect1.inspect()) {
+            this.winnerNumber = rowInspect1.inspect();
+        }
+        if (rowInspect2.inspect()) {
+            this.winnerNumber = rowInspect2.inspect();
+        }
+        if (rowInspect3.inspect()) {
+            this.winnerNumber = rowInspect3.inspect();
+        }
+        if (rowInspect4.inspect()) {
+            this.winnerNumber = rowInspect4.inspect();
+        }
     }
 }
