@@ -37,6 +37,11 @@ function updateUI() {
 
         }
     }
+    for (let i = 0; i <= 6; i++){
+        let column = document.getElementById(`column-${i}`)
+        if (column.isFull()) {column.classList.add('full')}
+        else {column.classList.remove('full')}
+    }
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {

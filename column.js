@@ -16,4 +16,13 @@ export class Column {
     getTokenAt(rowNum) {
         return this.tokens[rowNum];
     }
+    isFull(){
+        for (let i = 0; i <=5; i++){
+            let el = this.tokens[i]
+            if (el === null){
+                return false
+            }
+        }
+        return true
+    }
 }

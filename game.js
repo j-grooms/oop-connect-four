@@ -23,4 +23,7 @@ import { Column } from "./column.js";
     getTokenAt(rowIndex, columnIndex) {
         return this.columns[columnIndex].getTokenAt(rowIndex);
     }
+    isColumnFull(columnNum) {
+        return this.columns[columnNum].isFull()
+    }
 }
