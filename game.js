@@ -7,9 +7,15 @@ import { Column } from "./column.js";
         this.currentPlayer = 1;
         this.columns = [new Column, new Column, new Column,
             new Column, new Column, new Column, new Column]
+        this.winnerNumber = 0;
     }
     getName() {
-        return `${this.playerOneName} vs. ${this.playerTwoName}`
+        if (this.winnerNumber === 0) {
+            return `${this.playerOneName} vs. ${this.playerTwoName}`
+        }
+        if (this.winnerNumber === 3) {
+            return `${this.playerOneName} ties with ${this.playerTwoName}`
+        }
     }
     playInColumn(columnIndex) {
         this.columns[columnIndex].add(this.currentPlayer)
@@ -18,12 +24,20 @@ import { Column } from "./column.js";
         } else {
             this.currentPlayer = 1
         }
-
+        this.checkForTie();
     }
     getTokenAt(rowIndex, columnIndex) {
         return this.columns[columnIndex].getTokenAt(rowIndex);
     }
     isColumnFull(columnNum) {
+        // console.log('isColumnFull')
         return this.columns[columnNum].isFull()
+    }
+    checkForTie() {
+
+        if (this.columns.every((element) => element.isFull())) {
+            this.winnerNumber = 3;
+        }
+        // console.log('tie', this.winnerNumber)
     }
 }

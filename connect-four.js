@@ -54,6 +54,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const newGame = document.getElementById('new-game');
 
     clickTargets.addEventListener('click', (e)=>{
+        if (game.isColumnFull(parseInt(e.target.id.slice(7)))) {
+            // e.preventDefault();
+            console.log('test')
+            return;
+        }
         let colNum = e.target.id.slice(7)
 
         game.playInColumn(colNum);
